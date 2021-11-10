@@ -9,3 +9,5 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.getenv('secretkey')
 
 db = SQLAlchemy(app)
+
+import application.routes
