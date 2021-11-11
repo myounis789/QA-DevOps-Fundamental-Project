@@ -7,3 +7,8 @@ class AddUser(FlaskForm):
     birthDate = DateField("Date of Birth")
     number = IntegerField("Phone Number")
     submit = SubmitField("Register")
+
+class CustomerLogin(FlaskForm):
+    custName = StringField("Login-ID")
+    yourId = StringField("Full Name")
+    submit = SubmitField("Log in")
