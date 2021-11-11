@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from application import app, db
-
+from application.forms import AddUser
 
 @app.route("/")
 def homePage():
@@ -8,4 +8,5 @@ def homePage():
 
 @app.route("/register")
 def register():
-    return render_template("registration.html")
+    form = AddUser()
+    return render_template("registration.html", form=form)
