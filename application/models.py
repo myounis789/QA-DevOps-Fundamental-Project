@@ -8,4 +8,3 @@ class Users(db.Model):
     DoB = db.Column(db.Date)
     Phone = db.Column(db.Integer(15))
     LoginId = db.Column(db.String(10))
-    
