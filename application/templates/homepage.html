@@ -9,23 +9,38 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url_for('homePage') }}">Restaurant Reserver</a>
+        <img src="https://i.ibb.co/G7wq73p/logo2.jpg" alt="applogo" style="width: 150px;height: 60px;"></img>
+        
+        <a class="navbar-brand" href="{{ url_for('homePage') }}">
+            <h2 style="font-style:italic; color: crimson;">Restaurant Reserver</h2>
+        </a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <img src="https://lh3.googleusercontent.com/proxy/KMjzbS7d21chz6Qh4yRqh38enafGB8gysS9Neoy03u5c6CT3X54k_eJyyyzH2jXnEohx3RYiovQMoJl-AJbJhAQomEYtlQLwZ8kyQ6QUuVOw-cQXHfnQc_V9yiqCaNnHVmP8DG_G0pSZKWKBa-3lLdD65WQvU767kGVYEDsFSr3aJw" style="width: 120px;;height: 60px;;"></img>
     </nav>
 <center>
     <h1 style=color:red>Welcome to Restaurant Reserver!</h1>
     <br>
     <br>
     <br>
-    <!-- <button type="button" class="btn btn-outline-primary btn-lg">Primary</button> -->
-    <button style = "background-color:lime;"><h3><a href="">Customer Login</a></h3></button><br>
+    <button type="button" class="btn btn-outline-primary btn-lg">
+        <a href="">Customer Login</a> 
+    </button>
     <br>
-    <button style = "background-color:lime;"><h3><a href="">Admin Login</a></h3></button><br>
     <br>
-    <button style = "background-color:lime;"><h3><a href="{{ url_for('register') }}">New User? Register Here!</a></h3></button><br>
+    <button type="button" class="btn btn-outline-primary btn-lg">
+        <a href="">Admin Login</a> 
+    </button>
+    <br>
+    <br>
+    <br>
+    Don't have an account?
+    <br>
+    <button type="button" class="btn btn-outline-secondary btn-lg">
+        <a style="color:black;"href="{{ url_for('register') }}">Register Here!</a> 
+    </button>
+    <br>
     <br>
 </center>
 </body>
