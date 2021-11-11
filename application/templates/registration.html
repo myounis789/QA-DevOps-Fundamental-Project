@@ -27,7 +27,7 @@
     
     <br>
     <center>
-        <h1>You are one step away from making reservations...</h1>
+        <h2>You are one step away from making reservations...</h2>
         <section class="vh-100">
             <div class="container-fluid h-custom">
               <div class="row d-flex justify-content-center align-items-center h-100">
@@ -46,7 +46,10 @@
                 <br>
                 {{form.number.label}} {{ form.number }}<br>
                 <br>
-                {{form.submit}}
+                <button type="submit" class="btn btn-outline-primary btn-lg">
+                    {{form.submit}}
+                </button>
+                
             </form>
 
         </div>
