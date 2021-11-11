@@ -6,5 +6,5 @@ class Users(db.Model):
     UserType = db.Column(db.CHAR(10))
     Email = db.Column(db.String)
     DoB = db.Column(db.Date)
-    Phone = db.Column(db.Integer(15))
+    Phone = db.Column(db.String(15))
     LoginId = db.Column(db.String(10))
