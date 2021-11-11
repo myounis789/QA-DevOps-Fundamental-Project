@@ -4,15 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>Welcome</title>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{{ url_for('homePage') }}">Restaurant Reserver</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <img src="https://lh3.googleusercontent.com/proxy/KMjzbS7d21chz6Qh4yRqh38enafGB8gysS9Neoy03u5c6CT3X54k_eJyyyzH2jXnEohx3RYiovQMoJl-AJbJhAQomEYtlQLwZ8kyQ6QUuVOw-cQXHfnQc_V9yiqCaNnHVmP8DG_G0pSZKWKBa-3lLdD65WQvU767kGVYEDsFSr3aJw" style="width: 120px;;height: 60px;;"></img>
+    </nav>
 <center>
-    <h1>Welcome to Restaurant Reserver!</h1>
-    <img src="/application/logo.png"></img>
+    <h1 style=color:red>Welcome to Restaurant Reserver!</h1>
     <br>
     <br>
     <br>
+    <!-- <button type="button" class="btn btn-outline-primary btn-lg">Primary</button> -->
     <button style = "background-color:lime;"><h3><a href="">Customer Login</a></h3></button><br>
     <br>
     <button style = "background-color:lime;"><h3><a href="">Admin Login</a></h3></button><br>
