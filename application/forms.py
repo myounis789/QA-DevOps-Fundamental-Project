@@ -9,6 +9,11 @@ class AddUser(FlaskForm):
     submit = SubmitField("Register")
 
 class CustomerLogin(FlaskForm):
-    custName = StringField("Login-ID")
-    yourId = StringField("Full Name")
+    custName = StringField("Full Name")
+    yourId = StringField("Login-ID")
+    submit = SubmitField("Log in")
+
+class AdminLogin(FlaskForm):
+    adminName = StringField("Full Name")
+    adminId = StringField("Login-ID")
     submit = SubmitField("Log in")
