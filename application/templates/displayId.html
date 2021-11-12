@@ -26,7 +26,12 @@
         <h2 style="color:red">{{ customer.LoginId }}</h2><br>
         Please make a note of this as you will need it to login.<br>
         NOTE: It is VERY important you keep this safe and DO NOT share with anyone!<br>
-        This will only be given to you once!
+        This will only be given to you once!<br>
+        <br>
+        <br>
+        <button type="button" class="btn btn-outline-primary btn-lg">
+          <a href=" {{ url_for('customerLogin') }}">Login Now!</a> 
+      </button>
     </center>
   </body>
 </html>
