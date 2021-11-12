@@ -1,58 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>Join Us</title>
+    <link rel="stylesheet" href="/application/static/main.css" />
 </head>
 </nav>
+
 <body style="background-image: url('https://media.istockphoto.com/photos/abstract-blue-cyan-background-picture-id995719694?b=1&k=20&m=995719694&s=170667a&w=0&h=bQ4Imx3qGb0-ZCPz5JIjyOWpgYENfVzbO3wR_pnNpYw='); 
              background-repeat: no-repeat;
              background-position: center; 
              background-size: cover;">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
         <img src="https://i.ibb.co/G7wq73p/logo2.jpg" alt="applogo" style="width: 150px;height: 60px;"></img>
-        
+
         <a class="navbar-brand" href="{{ url_for('homePage') }}">
             <h2 style="font-style:italic; color: crimson;">Restaurant Reserver</h2>
         </a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
     </nav>
-    
+
     <br>
     <center>
         <h2>You are one step away from making reservations...</h2>
         <section class="vh-100">
             <div class="container-fluid h-custom">
-              <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-md-9 col-lg-6 col-xl-5">
-                  <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-login-form/draw2.png" class="img-fluid"
-                    alt="Sample image">
-                </div>
+                <div class="row d-flex justify-content-center align-items-center h-100">
+                    <div class="col-md-9 col-lg-6 col-xl-5">
+                        <img src="https://mdbootstrap.com/img/Photos/new-templates/bootstrap-login-form/draw2.png"
+                            class="img-fluid" alt="Sample image">
+                    </div>
 
-        <div class='form'>
-            <form action="" method="POST">
-                {{form.custName.label}} {{ form.custName }}<br>
-                <br>
-                {{form.email.label}} {{ form.email }}<br>
-                <br>
-                {{form.birthDate.label}} {{ form.birthDate }}<br>
-                <br>
-                {{form.number.label}} {{ form.number }}<br>
-                <br>
-                <button type="submit" class="btn btn-outline-primary btn-lg">
-                    {{form.submit}}
-                </button>
-                
-            </form>
+                    <div class='form'>
+                        <form action="" method="POST">
+                            {{form.custName.label}} {{ form.custName }}<br>
+                            <br>
+                            {{form.email.label}} {{ form.email }}<br>
+                            <br>
+                            {{form.birthDate.label}} {{ form.birthDate }}<br>
+                            <br>
+                            {{form.number.label}} {{ form.number }}<br>
+                            <br>
+                            <button class="btn btn-outline-primary btn-lg" role="button">
+                                {{ form.submit }}
+                            </button>
 
-        </div>
+                        </form>
+
+                    </div>
     </center>
 </body>
+
 </html>
