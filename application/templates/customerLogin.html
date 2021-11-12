@@ -32,7 +32,7 @@
 
         <div class='form'>
             <br>
-            <form action="" method="POST">
+            <form action="{{ url_for('userHome')  }}" method="POST">
                 {{form.custName.label}} {{ form.custName }}<br>
                 <br>
                 {{form.yourId.label}} {{ form.yourId }}<br>
