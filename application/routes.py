@@ -23,6 +23,20 @@ def customerLogin():
     form = CustomerLogin()
     return render_template("customerLogin.html", form=form)
 
+@app.route("/userHome/", methods=["POST"])
+def userHome():
+    form = CustomerLogin()
+    currentName = form.custName.data
+    currentId = form.yourId.data
+    data = Users.query.all()
+    # Verifying login credentials
+    for record in data:
+        print(record.Name)
+        if record.Name == currentName and record.LoginId == currentId:
+            return render_template("userLanding.html", Name=currentName, LoginId=currentId)
+
+    return redirect('/customer')
+
 @app.route("/saveCust", methods=["GET","POST"])
 def saveCust():
     form = AddUser()
