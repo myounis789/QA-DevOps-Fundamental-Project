@@ -15,3 +15,20 @@ def register():
 def customerLogin():
     form = CustomerLogin()
     return render_template("customerLogin.html", form=form)
+
+@app.route("/saveCust", methods=["GET","POST"])
+def saveCust():
+    form = CustomerLogin()
+    if request.method == 'POST':
+        name = form.custName.data
+        userType = 'customer'
+        email = form.email.data
+        dob = form.birthDate.data
+        phone = form.number.data
+        loginid = "DKCWeb12"
+
+        newCust = Users (Name = Name, UserType= = userType, Email = email, DoB = dob ,Phone = phone, LoginId=loginid)
+        db.session.add(newCust)
+        db.session.commit()
+        return redirect("/")
+    return render_template("displayId.html", customer=form)
