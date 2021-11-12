@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- This code removes the up/down arrows on integer field -->
+<style>
+    input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+</style>
+<!-- ----------------------------------------------------   -->
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,15 +51,15 @@
 
                     <div class='form'>
                         <form action="" method="POST">
-                            {{form.custName.label}} {{ form.custName }}<br>
+                            {{ form.custName.label }} {{ form.custName }}<br>
                             <br>
-                            {{form.email.label}} {{ form.email }}<br>
+                            {{ form.email.label }} {{ form.email }}<br>
                             <br>
-                            {{form.birthDate.label}} {{ form.birthDate }}<br>
+                            {{ form.birthDate.label }} {{ form.birthDate }}<br>
                             <br>
-                            {{form.number.label}} {{ form.number }}<br>
+                            {{ form.number.label }} {{ form.number }}<br>
                             <br>
-                            <button class="btn btn-outline-primary btn-lg" role="button">
+                            <button type="button" class="btn btn-outline-primary btn-lg">
                                 {{ form.submit }}
                             </button>
 
