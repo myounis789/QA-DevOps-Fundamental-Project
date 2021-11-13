@@ -33,7 +33,9 @@ def userHome():
     for record in data:
         print(record.Name)
         if record.Name == currentName and record.LoginId == currentId:
-            return render_template("userLanding.html", Name=currentName, LoginId=currentId)
+            # change this to bookings table query
+            allbookings=Users.query.filter_by(LoginId=currentId).all()
+            return render_template("userLanding.html", Name=currentName, LoginId=currentId, viewall=allbookings)
 
     return redirect('/customer')
 
