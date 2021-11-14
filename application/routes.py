@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from application import app, db
-from application.forms import AddUser, CustomerLogin
+from application.forms import AddUser, CustomerLogin, AddBooking
 from application.models import Users, Bookings
 # ----------------------------------------------
 import string, random
@@ -42,7 +42,8 @@ def login():
 @app.route("/userHome/<currentId>")
 def userHome(currentId):
     data=Users.query.filter_by(LoginId=currentId).first()
-    return render_template("userLanding.html", user=data)
+    data2=Bookings.query.filter_by(uid=data.UserId).all()
+    return render_template("userLanding.html", user=data, bookings=data2)
 
 @app.route("/saveCust", methods=["GET","POST"])
 def saveCust():
@@ -63,5 +64,25 @@ def saveCust():
 
 @app.route("/userHome/newBooking/<currentId>")
 def newBooking(currentId):
+    form=AddBooking()
     data=Users.query.filter_by(LoginId=currentId).first()
-    return render_template("newBooking.html", user=data)
+    return render_template("newBooking.html", user=data, form=form)
+
+@app.route("/userHome/addBooking/<currentId>", methods=["POST"])
+def addBooking(currentId):
+    form=AddBooking()
+
+    desc = form.description.data
+    spRequest = ''.join(form.requests.data)
+    bookingDate = form.date.data
+    bookingTime = form.time.data
+    custAdult = form.adults.data
+    custChild = form.children.data
+    guests = custAdult + custChild
+    bookingStatus = 'Upcoming'
+    currentUser = Users.query.filter_by(LoginId=currentId).first()
+    newBookings = Bookings(description = desc, specialRequest = spRequest, date = bookingDate, time = bookingTime, adult = custAdult, children = custChild, guests = guests, status = bookingStatus, uid=currentUser.UserId)
+    db.session.add(newBookings)
+    db.session.commit()
+
+    return redirect(f"/userHome/{currentId}")
