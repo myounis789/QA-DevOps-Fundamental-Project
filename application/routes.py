@@ -45,6 +45,22 @@ def userHome(currentId):
     data=Users.query.filter_by(LoginId=currentId).first()
     # Printing upcoming bookings only on dashboard
     data2=Bookings.query.filter_by(uid=data.UserId, status='Upcoming').all()
+    
+    # Updating existing bookings to expire once they have passed their date and time
+    for all in data2:
+        bookingdate = datetime.datetime.strptime(all.date, "%Y-%m-%d")
+        bookingtime = datetime.datetime.strptime(all.time, "%H:%M:%S")
+        bookingdatetime = datetime.datetime.combine(bookingdate.date(), bookingtime.time())
+        currentDatetime = datetime.datetime.now()
+        print(currentDatetime)
+        print(bookingdatetime)
+        if bookingdatetime < currentDatetime:
+            all.status='Expired'
+            db.session.commit()
+            data2=Bookings.query.filter_by(uid=data.UserId, status='Upcoming').all()
+            return render_template("userLanding.html", user=data, bookings=data2)
+        else:
+            all.status='Upcoming'
     return render_template("userLanding.html", user=data, bookings=data2)
 
 @app.route("/userHome/managebookings/<currentId>")
