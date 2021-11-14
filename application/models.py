@@ -19,3 +19,4 @@ class Bookings(db.Model):
     status = db.Column(db.String(15))
     uid = db.Column(db.Integer, db.ForeignKey(Users.UserId))
     
+    
