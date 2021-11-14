@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect
 from application import app, db
 from application.forms import AddUser, CustomerLogin, AddBooking, UpdateBooking
 from application.models import Users, Bookings
+import datetime
 # ----------------------------------------------
 import string, random
 
@@ -42,12 +43,14 @@ def login():
 @app.route("/userHome/<currentId>")
 def userHome(currentId):
     data=Users.query.filter_by(LoginId=currentId).first()
-    data2=Bookings.query.filter_by(uid=data.UserId).all()
+    # Printing upcoming bookings only on dashboard
+    data2=Bookings.query.filter_by(uid=data.UserId, status='Upcoming').all()
     return render_template("userLanding.html", user=data, bookings=data2)
 
 @app.route("/userHome/managebookings/<currentId>")
 def manageBookings(currentId):
     data=Users.query.filter_by(LoginId=currentId).first()
+    # Printing all bookings made by user
     data2=Bookings.query.filter_by(uid=data.UserId).all()
     return render_template("manageBookings.html", user=data, bookings=data2)
 
