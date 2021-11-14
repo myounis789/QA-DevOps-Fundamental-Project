@@ -46,10 +46,32 @@ def userHome(currentId):
     return render_template("userLanding.html", user=data, bookings=data2)
 
 @app.route("/userHome/managebookings/<currentId>")
-def viewAll(currentId):
+def manageBookings(currentId):
     data=Users.query.filter_by(LoginId=currentId).first()
     data2=Bookings.query.filter_by(uid=data.UserId).all()
     return render_template("manageBookings.html", user=data, bookings=data2)
+
+# CRUD FUNCTIONALITY--------------------------------------------------------
+
+# view bookings:
+@app.route("/userHome/viewBooking/<currentId>/int:<bookingId>")
+def viewBooking(currentId, bookingId):
+    data=Users.query.filter_by(LoginId=currentId).first()
+    data2=Bookings.query.filter_by(bookingId=bookingId).first()
+    return render_template("viewBooking.html", user=data, bookings=data2)
+
+
+
+# edit bookings:
+
+
+
+
+# delete bookings:
+
+
+
+# CRUD FUNCTIONALITY--------------------------------------------------------
 
 @app.route("/saveCust", methods=["GET","POST"])
 def saveCust():
@@ -79,7 +101,7 @@ def addBooking(currentId):
     form=AddBooking()
 
     desc = form.description.data
-    spRequest = ''.join(form.requests.data)
+    spRequest = ', '.join(form.requests.data)
     bookingDate = form.date.data
     bookingTime = form.time.data
     custAdult = form.adults.data
