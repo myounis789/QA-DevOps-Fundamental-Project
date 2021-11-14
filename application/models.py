@@ -8,7 +8,7 @@ class Users(db.Model):
     DoB = db.Column(db.Date)
     Phone = db.Column(db.String(15), unique=True)
     LoginId = db.Column(db.String(10), unique=True)
-    Bookings = db.relationship("bookings", backref="user")
+    Bookings = db.relationship("Bookings", backref="user")
 
 class Bookings(db.Model):
     bookingId = db.Column(db.Integer, primary_key=True, nullable=False)
@@ -16,6 +16,6 @@ class Bookings(db.Model):
     specialRequest = db.Column(db.String(50))
     date = db.Column(db.Date)
     time = db.Column(db.Time)
-    status = db.column(db.String(15))
-    uid = db.column(db.Integer, db.ForeignKey(Users.UserId))
+    status = db.Column(db.String(15))
+    uid = db.Column(db.Integer, db.ForeignKey(Users.UserId))
     
