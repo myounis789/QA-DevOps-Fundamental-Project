@@ -33,7 +33,7 @@
             <a class="nav-link" href="{{ url_for('newBooking', currentId=user.LoginId) }}">New Booking</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Manage</a>
+            <a class="nav-link" href="{{ url_for('viewAll', currentId=user.LoginId) }}">Manage</a>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled" href="#">Account: {{ user.Name }} (Manage)</a>
@@ -44,7 +44,7 @@
     </nav>
 
     <center>
-      <h1>My Bookings</h1>
+      <h1>Dashboard</h1>
       <br />
       <br />
       Upcoming bookings:

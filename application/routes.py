@@ -45,6 +45,12 @@ def userHome(currentId):
     data2=Bookings.query.filter_by(uid=data.UserId).all()
     return render_template("userLanding.html", user=data, bookings=data2)
 
+@app.route("/userHome/managebookings/<currentId>")
+def viewAll(currentId):
+    data=Users.query.filter_by(LoginId=currentId).first()
+    data2=Bookings.query.filter_by(uid=data.UserId).all()
+    return render_template("manageBookings.html", user=data, bookings=data2)
+
 @app.route("/saveCust", methods=["GET","POST"])
 def saveCust():
     form = AddUser()
