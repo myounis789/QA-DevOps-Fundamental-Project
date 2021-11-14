@@ -2,9 +2,8 @@ from flask import Flask, render_template, request, redirect
 from application import app, db
 from application.forms import AddUser, CustomerLogin, AddBooking, UpdateBooking
 from application.models import Users, Bookings
-import datetime
 # ----------------------------------------------
-import string, random
+import string, random, datetime
 
 def generateKey(size=8, chars=string.ascii_letters + string.digits):
         return ''.join(random.choice(chars) for _ in range(size))
@@ -46,7 +45,7 @@ def userHome(currentId):
     # Printing upcoming bookings only on dashboard
     data2=Bookings.query.filter_by(uid=data.UserId, status='Upcoming').all()
     
-    # Updating existing bookings to expire once they have passed their date and time
+    # Cheeck if a booking has expired
     for all in data2:
         bookingdate = datetime.datetime.strptime(all.date, "%Y-%m-%d")
         bookingtime = datetime.datetime.strptime(all.time, "%H:%M:%S")
@@ -54,6 +53,8 @@ def userHome(currentId):
         currentDatetime = datetime.datetime.now()
         print(currentDatetime)
         print(bookingdatetime)
+
+        # Updating existing bookings to expire once they have passed their date and time
         if bookingdatetime < currentDatetime:
             all.status='Expired'
             db.session.commit()
@@ -61,6 +62,7 @@ def userHome(currentId):
             return render_template("userLanding.html", user=data, bookings=data2)
         else:
             all.status='Upcoming'
+
     return render_template("userLanding.html", user=data, bookings=data2)
 
 @app.route("/userHome/managebookings/<currentId>")

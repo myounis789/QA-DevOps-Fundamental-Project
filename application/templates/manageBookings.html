@@ -46,7 +46,7 @@
         <div class="col-md border border-dark">Booking Time</div>
         <div class="col-sm border border-dark">Guests</div>
         <div class="col-sm border border-dark">Status</div>
-        <div class="col-3 border border-dark">Action</div>
+        <div class="col-sm border border-dark">Action</div>
       </div>
       {% for booking in bookings %}
       <div class="row">
@@ -55,10 +55,9 @@
         <div class="col-md border border-dark">{{ booking.time }}</div>
         <div class="col-sm border border-dark">{{ booking.guests }}</div>
         <div class="col-sm border border-dark">{{ booking.status }}</div>
-        <div class="col-3 border border-dark">
+        <div class="col-sm border border-dark">
           <button type="button" class="btn btn-primary btn-sm"><a href="{{ url_for('viewBooking', currentId=user.LoginId, bookingId=booking.bookingId ) }}" style="color :white;">View</a></button>
-          <button type="button" class="btn btn-primary btn-sm"><a href="{{ url_for('editBooking', currentId=user.LoginId, bookingId=booking.bookingId ) }}" style="color :white;">Edit</a></button>
-          <button type="button" class="btn btn-primary btn-sm"><a href="{{ url_for('deleteBooking', currentId=user.LoginId, bookingId=booking.bookingId ) }}" style="color :white;">Delete</a></button>
+          
         </div>
       </div>
       {% endfor %}
