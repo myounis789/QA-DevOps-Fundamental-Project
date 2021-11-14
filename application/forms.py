@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import IntegerField, StringField, SelectField, SubmitField, SelectMultipleField, widgets
+from wtforms import IntegerField, StringField, SelectField, SubmitField, SelectMultipleField
+from wtforms import widgets, validators
 from wtforms import DateField, TimeField
 from datetime import datetime
 # ---------------------------------------------------------------
@@ -28,10 +29,10 @@ class AdminLogin(FlaskForm):
     submit = SubmitField("Log in")
 
 class AddBooking(FlaskForm):
-    description = StringField("Description")
-    date = DateField("Booking Date")
-    time = TimeField("Time")
-    adults = IntegerField("No. of Adults")
-    children = IntegerField("No. of Children")
+    description = StringField("Description", [validators.DataRequired()] )
+    date = DateField("Booking Date", [validators.DataRequired()] )
+    time = TimeField("Time", [validators.DataRequired()] )
+    adults = IntegerField("No. of Adults", [validators.DataRequired()] )
+    children = IntegerField("No. of Children", [validators.DataRequired()] )
     requests = MultiCheckboxField("Special Requests", choices=[('Power Socket'),('Window Seat'),('Wheelchair Access'),('Baby Changing facility'), ('Prayer Room'), ('Private Family room')] )
     submit = SubmitField("Book Now!")
