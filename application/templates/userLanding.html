@@ -36,7 +36,7 @@
             <a class="nav-link" href="#">Manage</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#">Account: {{ user.Name }}</a>
+            <a class="nav-link disabled" href="#">Account: {{ user.Name }} (Manage)</a>
           </li>
 
           <a class="btn btn-outline-primary btn-sm" type="button" href="{{ url_for('homePage') }}">Log Out</a>
@@ -52,23 +52,26 @@
       <div class="container bg-light">
           <div class="row bg-info">
           <div class="col-4 border border-dark">Description</div>
-          <div class="col-sm border border-dark">Booking Date</div>
-          <div class="col-sm border border-dark">Booking Time</div>
+          <div class="col-md border border-dark">Booking Date</div>
+          <div class="col-md border border-dark">Booking Time</div>
+          <div class="col-sm border border-dark">Guests</div>
           <div class="col-sm border border-dark">Status</div>
           <div class="col-3 border border-dark">Action</div>
         </div>
-
+        {% for booking in bookings %}
         <div class="row">
-          <div class="col-4 border border-dark">Birthday party booking</div>
-          <div class="col-sm border border-dark">2021-11-20</div>
-          <div class="col-sm border border-dark">6:00 PM</div>
-          <div class="col-sm border border-dark">Upcoming</div>
+          <div class="col-4 border border-dark">{{ booking.description }}</div>
+          <div class="col-md border border-dark">{{ booking.date }}</div>
+          <div class="col-md border border-dark">{{ booking.time }}</div>
+          <div class="col-sm border border-dark">{{ booking.guests }}</div>
+          <div class="col-sm border border-dark">{{ booking.status }}</div>
           <div class="col-3 border border-dark">
             <button type="button" class="btn btn-primary btn-sm">View</button>
             <button type="button" class="btn btn-primary btn-sm">Edit</button>
             <button type="button" class="btn btn-primary btn-sm">Delete</button>
           </div>
         </div>
+        {% endfor %}
       </div>
 
     </center>
