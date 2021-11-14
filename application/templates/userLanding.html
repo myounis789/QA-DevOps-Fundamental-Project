@@ -27,16 +27,16 @@
         >Restaurant Reserver</span>
         <ul class="nav justify-content-end">
           <li class="nav-item">
-            <a class="nav-link active" href="#">Home</a>
+            <a class="nav-link active" href="{{url_for('userHome', currentId=user.LoginId)}}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">New Booking</a>
+            <a class="nav-link" href="{{ url_for('newBooking', currentId=user.LoginId) }}">New Booking</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Manage</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#">Account: {{ Name }}</a>
+            <a class="nav-link disabled" href="#">Account: {{ user.Name }}</a>
           </li>
 
           <a class="btn btn-outline-primary btn-sm" type="button" href="{{ url_for('homePage') }}">Log Out</a>
@@ -50,22 +50,18 @@
       Upcoming bookings:
       <!-- Adding a bootstrap table layout -->
       <div class="container bg-light">
-        <div class="row bg-info">
-          <div class="col-sm border border-dark">Booking Id</div>
+          <div class="row bg-info">
           <div class="col-4 border border-dark">Description</div>
-          <div class="col-sm border border-dark">Date</div>
-          <div class="col-sm border border-dark">Time</div>
+          <div class="col-sm border border-dark">Booking Date</div>
+          <div class="col-sm border border-dark">Booking Time</div>
           <div class="col-sm border border-dark">Status</div>
           <div class="col-3 border border-dark">Action</div>
         </div>
 
         <div class="row">
-          <div class="col-sm border border-dark">1</div>
-          <div class="col-4 border border-dark">
-            This is a booking description
-          </div>
-          <div class="col-sm border border-dark">15/11/2021</div>
-          <div class="col-sm border border-dark">6:00PM</div>
+          <div class="col-4 border border-dark">Birthday party booking</div>
+          <div class="col-sm border border-dark">2021-11-20</div>
+          <div class="col-sm border border-dark">6:00 PM</div>
           <div class="col-sm border border-dark">Upcoming</div>
           <div class="col-3 border border-dark">
             <button type="button" class="btn btn-primary btn-sm">View</button>
@@ -74,6 +70,7 @@
           </div>
         </div>
       </div>
+
     </center>
   </body>
 </html>
