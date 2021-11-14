@@ -36,6 +36,8 @@ def userHome():
             # change this to bookings table query
             allbookings=Users.query.filter_by(LoginId=currentId).all()
             return render_template("userLanding.html", Name=currentName, LoginId=currentId, viewall=allbookings)
+        
+        return '<h1 style="color:red;"> ERROR: Login credentials do not match! Please try again </h1>'
 
     return redirect('/customer')
 
