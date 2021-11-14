@@ -151,3 +151,16 @@ def addBooking(currentId):
     db.session.commit()
 
     return redirect(f"/userHome/{currentId}")
+
+# Filter/Search tool features:
+@app.route("/userHome/filterRecords/<currentId>/", methods=["POST"])
+def filterRecords(currentId):
+    result = str(request.form['filtertype'])
+    
+    if result == 'Default':
+        return redirect(f"/userHome/{currentId}")
+    else:
+        data=Users.query.filter_by(LoginId=currentId).first()
+        data2=Bookings.query.filter_by( uid=data.UserId, status='Upcoming' ).order_by(result).all()
+        return render_template("userLanding.html", user=data, bookings=data2)
+    

@@ -47,6 +47,18 @@
       <h1>Dashboard</h1>
       <br />
       <br />
+      <!-- Adding Filter tool to sort bookings -->
+      <form action="{{ url_for('filterRecords', currentId=user.LoginId) }}" method="post">
+        Sort by:
+        <select name="filtertype">
+            <option value="Default">Default</option>
+            <option value="date">Recent First</option>
+            <option value="description">Description(A-Z)</option>
+            <option value="guests">Guests</option>
+        </select>
+        <input type="submit" value="Filter">
+        </form>
+
       Upcoming bookings:
       <!-- Adding a bootstrap table layout -->
       <div class="container bg-light">
