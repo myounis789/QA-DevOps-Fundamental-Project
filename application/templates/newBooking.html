@@ -35,7 +35,7 @@
           <a class="nav-link" href="#">Manage</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#">Account: {{ user.Name }}</a>
+          <a class="nav-link disabled" href="#">Account: {{ user.Name }} (Manage)</a>
         </li>
 
         <a class="btn btn-outline-primary btn-sm" type="button" href="{{ url_for('homePage') }}">Log Out</a>
@@ -43,6 +43,28 @@
   </nav>
   <Center>
       Make a new reservation:
+
+      <div class='form'>
+        <form action="{{ url_for('addBooking', currentId=user.LoginId) }}" method="POST">
+            {{ form.description.label }} {{ form.description }}<br>
+            <br>
+            {{ form.date.label }} {{ form.date }}<br>
+            <br>
+            {{ form.time.label }} {{ form.time }}<br>
+            <br>
+            {{ form.adults.label }} {{ form.adults }}<br>
+            <br>
+            {{ form.children.label }} {{ form.children }}<br>
+            <br>
+            {{ form.requests.label }} {{ form.requests }}<br>
+            <br>
+            <button type="button" class="btn btn-outline-primary btn-lg">
+                {{ form.submit }}
+            </button>
+
+        </form>
+
+    </div>
   </Center>
 </body>
 </html>
