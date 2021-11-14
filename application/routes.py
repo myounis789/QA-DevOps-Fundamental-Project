@@ -164,3 +164,25 @@ def filterRecords(currentId):
         data2=Bookings.query.filter_by( uid=data.UserId, status='Upcoming' ).order_by(result).all()
         return render_template("userLanding.html", user=data, bookings=data2)
     
+@app.route("/userHome/filterAll/<currentId>/", methods=["POST"])
+def filterAll(currentId):
+    result = str(request.form['filtertype'])
+    
+    if result == 'all':
+        data=Users.query.filter_by(LoginId=currentId).first()
+        data2=Bookings.query.filter_by( uid=data.UserId).all()
+        return redirect(f"/userHome/managebookings/{currentId}")
+
+    elif result == 'status-up':
+        data=Users.query.filter_by(LoginId=currentId).first()
+        data2=Bookings.query.filter_by( uid=data.UserId, status='Upcoming' ).all()
+        return render_template("manageBookings.html", user=data, bookings=data2)
+
+    elif result == 'status-ex':
+        data=Users.query.filter_by(LoginId=currentId).first()
+        data2=Bookings.query.filter_by( uid=data.UserId, status='Expired' ).all()
+        return render_template("manageBookings.html", user=data, bookings=data2)
+    else:
+        data=Users.query.filter_by(LoginId=currentId).first()
+        data2=Bookings.query.filter_by( uid=data.UserId).order_by(result).all()
+        return render_template("manageBookings.html", user=data, bookings=data2)

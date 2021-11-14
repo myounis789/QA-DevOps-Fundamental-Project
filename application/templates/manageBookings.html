@@ -12,7 +12,14 @@
     />
     <title>Manage Bookings</title>
   </head>
-  <body>
+  <body
+    style="
+      background-image: url('https://i.ibb.co/bWyJbXf/bg-1.jpg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    "
+  >
     <nav class="navbar navbar-expand-lg navbar-light background-color: #e3f2fd;">
         <img src="https://i.ibb.co/G7wq73p/logo2.jpg" alt="applogo" style="width: 150px;height: 60px;"></img>
         <span class="navbar-brand" style="color: red"
@@ -36,8 +43,22 @@
       </nav>
 
       <center>
-        <h1>Booking History:</h1>
+        <h1>Booking History:</h1><br>
+        <br>
 
+        <form action="{{ url_for('filterAll', currentId=user.LoginId) }}" method="post">
+          Sort by:
+          <select name="filtertype">
+              <option value="all">All</option>
+              <option value="guests">Guests</option>
+              <option value="date">Recent First</option>
+              <option value="status-up">Status: Upcoming</option>
+              <option value="status-ex">Status: Expired</option>
+              <option value="description">Description(A-Z)</option>
+          </select>
+          <input type="submit" value="Filter">
+          </form>
+          Your bookings
         <!-- Adding a bootstrap table layout -->
       <div class="container bg-light">
         <div class="row bg-info">
