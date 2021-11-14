@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from application import app, db
-from application.forms import AddUser, CustomerLogin, AddBooking
+from application.forms import AddUser, CustomerLogin, AddBooking, UpdateBooking
 from application.models import Users, Bookings
 # ----------------------------------------------
 import string, random
@@ -63,12 +63,21 @@ def viewBooking(currentId, bookingId):
 
 
 # -----------------------Edit Booking---------------------------------------
-@app.route("/userHome/Booking/<currentId>/int:<bookingId>")
+@app.route("/userHome/updateBooking/<currentId>/int:<bookingId>", methods = ["GET", "POST"])
 def editBooking(currentId, bookingId):
+    form = UpdateBooking()
     currentBooking = Bookings.query.filter_by(bookingId=bookingId).first()
-    db.session.delete(currentBooking)
-    db.session.commit()
-    return redirect(f"/userHome/{currentId}")
+    currentUser=Users.query.filter_by(LoginId=currentId).first()
+    if request.method == 'POST':
+        currentBooking.description = form.newDescription.data
+        currentBooking.adult = form.newAdults.data
+        currentBooking.children = form.newChildren.data
+        currentBooking.guests = form.newAdults.data + form.newChildren.data
+        currentBooking.specialRequest = ', '.join(form.newRequests.data)
+        db.session.commit()
+        return redirect(f"/userHome/{currentId}")
+
+    return render_template('updateBooking.html', form=form, booking=currentBooking, user=currentUser)
 
 # -----------------------Delete Booking-------------------------------------
 @app.route("/userHome/deleteBooking/<currentId>/int:<bookingId>")

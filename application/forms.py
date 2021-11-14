@@ -36,3 +36,10 @@ class AddBooking(FlaskForm):
     children = IntegerField("No. of Children", [validators.DataRequired()] )
     requests = MultiCheckboxField("Special Requests", choices=[('Power Socket'),('Window Seat'),('Wheelchair Access'),('Baby Changing facility'), ('Prayer Room'), ('Private Family room')] )
     submit = SubmitField("Book Now!")
+
+class UpdateBooking(FlaskForm):
+    newDescription = StringField("Description", [validators.DataRequired()] )
+    newAdults = IntegerField("No. of Adults", [validators.DataRequired()] )
+    newChildren = IntegerField("No. of Children", [validators.DataRequired()] )
+    newRequests = MultiCheckboxField("Special Requests", choices=[('Power Socket'),('Window Seat'),('Wheelchair Access'),('Baby Changing facility'), ('Prayer Room'), ('Private Family room')] )
+    submit = SubmitField("Update Booking")
