@@ -51,9 +51,9 @@ def manageBookings(currentId):
     data2=Bookings.query.filter_by(uid=data.UserId).all()
     return render_template("manageBookings.html", user=data, bookings=data2)
 
-# CRUD FUNCTIONALITY--------------------------------------------------------
+# ---------------------Customer Actions-------------------------------------
 
-# view bookings:
+# -----------------------View Booking---------------------------------------
 @app.route("/userHome/viewBooking/<currentId>/int:<bookingId>")
 def viewBooking(currentId, bookingId):
     data=Users.query.filter_by(LoginId=currentId).first()
@@ -62,16 +62,23 @@ def viewBooking(currentId, bookingId):
 
 
 
-# edit bookings:
+# -----------------------Edit Booking---------------------------------------
+@app.route("/userHome/Booking/<currentId>/int:<bookingId>")
+def editBooking(currentId, bookingId):
+    currentBooking = Bookings.query.filter_by(bookingId=bookingId).first()
+    db.session.delete(currentBooking)
+    db.session.commit()
+    return redirect(f"/userHome/{currentId}")
 
+# -----------------------Delete Booking-------------------------------------
+@app.route("/userHome/deleteBooking/<currentId>/int:<bookingId>")
+def deleteBooking(currentId, bookingId):
+    currentBooking = Bookings.query.filter_by(bookingId=bookingId).first()
+    db.session.delete(currentBooking)
+    db.session.commit()
+    return redirect(f"/userHome/{currentId}")
 
-
-
-# delete bookings:
-
-
-
-# CRUD FUNCTIONALITY--------------------------------------------------------
+# ---------------------Customer Actions-------------------------------------
 
 @app.route("/saveCust", methods=["GET","POST"])
 def saveCust():

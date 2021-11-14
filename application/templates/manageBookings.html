@@ -58,7 +58,7 @@
         <div class="col-3 border border-dark">
           <button type="button" class="btn btn-primary btn-sm"><a href="{{ url_for('viewBooking', currentId=user.LoginId, bookingId=booking.bookingId ) }}" style="color :white;">View</a></button>
           <button type="button" class="btn btn-primary btn-sm">Edit</button>
-          <button type="button" class="btn btn-primary btn-sm">Delete</button>
+          <button type="button" class="btn btn-primary btn-sm"><a href="{{ url_for('deleteBooking', currentId=user.LoginId, bookingId=booking.bookingId ) }}" style="color :white;">Delete</a></button>
         </div>
       </div>
       {% endfor %}
