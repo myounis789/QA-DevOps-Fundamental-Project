@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from application import app, db
 from application.forms import AddUser, CustomerLogin
-from application.models import Users
+from application.models import Users, Bookings
 # ----------------------------------------------
 import string, random
 
@@ -23,23 +23,26 @@ def customerLogin():
     form = CustomerLogin()
     return render_template("customerLogin.html", form=form)
 
-@app.route("/userHome/", methods=["POST"])
-def userHome():
+@app.route("/login", methods=["POST"])
+def login():
     form = CustomerLogin()
     currentName = form.custName.data
     currentId = form.yourId.data
     data = Users.query.all()
     # Verifying login credentials
     for record in data:
-        print(record.Name)
+        # Debugging--------
+        # print(record.Name)
+        # print(record.LoginId," - ", currentId)
+        # Debugging--------
         if record.Name == currentName and record.LoginId == currentId:
-            # change this to bookings table query
-            allbookings=Users.query.filter_by(LoginId=currentId).all()
-            return render_template("userLanding.html", Name=currentName, LoginId=currentId, viewall=allbookings)
-        
-        return '<h1 style="color:red;"> ERROR: Login credentials do not match! Please try again </h1>'
+            return redirect(f"/userHome/{currentId}")
+    return '<h1 style="color:red;"> ERROR: Login credentials do not match! Please try again </h1>'
 
-    return redirect('/customer')
+@app.route("/userHome/<currentId>")
+def userHome(currentId):
+    data=Users.query.filter_by(LoginId=currentId).first()
+    return render_template("userLanding.html", user=data)
 
 @app.route("/saveCust", methods=["GET","POST"])
 def saveCust():
@@ -57,3 +60,8 @@ def saveCust():
         db.session.commit()
         return render_template("displayId.html", customer=newCust)
     return render_template("registration.html")
+
+@app.route("/userHome/newBooking/<currentId>")
+def newBooking(currentId):
+    data=Users.query.filter_by(LoginId=currentId).first()
+    return render_template("newBooking.html", user=data)
