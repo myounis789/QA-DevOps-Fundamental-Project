@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from application import app, db
-from application.forms import AddUser, CustomerLogin, AddBooking, UpdateBooking, UpdateAccount
+from application.forms import AddUser, CustomerLogin, AddBooking, UpdateBooking, UpdateAccount, AdminLogin
 from application.models import Users, Bookings
 # ----------------------------------------------
 import string, random, datetime
@@ -216,3 +216,82 @@ def searchRecord(currentId):
     data2 = eval(f"Bookings.query.filter_by(uid= {data.UserId}, {search_type} = '{search_Data}').all()")
     print(data2)
     return render_template("searchResults.html", searchRecords = data2, user=currentUser)
+
+# ---------------------Admin Feature------------------------------------
+@app.route("/admin")
+def adminLogin():
+    form = AdminLogin()
+    return render_template("adminLogin.html", form=form)
+
+# Admin Login
+@app.route("/adminlogin", methods=["POST"])
+def admLogin():
+    form = AdminLogin()
+    currentName = form.adminName.data
+    currentId = form.adminId.data
+    data = Users.query.all()
+    # Verifying login credentials
+    for record in data:
+        # Debugging--------
+        # print(record.Name)
+        # print(record.LoginId," - ", currentId)
+        # Debugging--------
+        if record.Name == currentName and record.LoginId == currentId:
+            return redirect(f"/adminHome/{currentId}")
+    return '<h1 style="color:red;"> ERROR: Login credentials do not match! Please try again </h1>'
+
+@app.route("/adminHome/<currentId>")
+def adminHome(currentId):
+    currentUser=Users.query.filter_by(LoginId=currentId).first()
+    data=Users.query.all()
+    # Printing upcoming bookings only on dashboard
+    data2=Bookings.query.all()
+    
+    # Check if a booking has expired
+    for all in data2:
+        bookingdate = datetime.datetime.strptime(all.date, "%Y-%m-%d")
+        bookingtime = datetime.datetime.strptime(all.time, "%H:%M:%S")
+        bookingdatetime = datetime.datetime.combine(bookingdate.date(), bookingtime.time())
+        currentDatetime = datetime.datetime.now()
+        print(currentDatetime)
+        print(bookingdatetime)
+
+        # Updating existing bookings to expire once they have passed their date and time
+        if bookingdatetime < currentDatetime:
+            all.status='Expired'
+            db.session.commit()
+            data2=Bookings.query.filter_by(status='Upcoming').all()
+            return render_template("adminLanding.html", user=currentUser, users=data, bookings=data2)
+        else:
+            all.status='Upcoming'
+
+    return render_template("adminLanding.html", user=data, bookings=data2, )
+
+@app.route("/adminHome/viewBooking/<currentId>/<bookId>")
+def adminView(currentId, bookId):
+    currentUser=Users.query.filter_by(LoginId=currentId).first()
+    data=Users.query.all()
+    currentbooking = Bookings.query.filter_by(bookingId=bookId).first()
+    for customer in data:
+        # if primary key matches foreign key
+        if customer.UserId == currentbooking.uid:
+            currentcust = Users.query.filter_by(UserId=customer.UserId).first()
+    return render_template("adminView.html", thiscustomer=currentcust, thisbooking=currentbooking, user=currentUser)
+
+#Filter/Search tool features:
+@app.route("/adminHome/adminFilter/<currentId>/", methods=["POST"])
+def adminfilterRecords(currentId):
+    currentUser=Users.query.filter_by(LoginId=currentId).first()
+    result = str(request.form['filtertype'])
+    if result == 'Default':
+        return redirect(f"/adminHome/{currentId}")
+    else:
+        data=Users.query.all()
+        data2=Bookings.query.filter_by(status='Upcoming').order_by(result).all()
+        return render_template("adminLanding.html", users=data, bookings=data2, user=currentUser)
+    return render_template("adminLanding.html", users=data, bookings=data2, user=currentUser)
+    
+@app.route("/adminHome/account/<currentId>/")
+def adminAccount(currentId):
+    currentUser=Users.query.filter_by(LoginId=currentId).first()
+    return render_template("adminAccount.html", user=currentUser)
