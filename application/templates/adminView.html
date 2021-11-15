@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <title>View Bookings</title>
+</head>
+
+<body style="
+      background-image: url('https://i.ibb.co/bWyJbXf/bg-1.jpg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+    ">
+    <nav class="navbar navbar-expand-lg navbar-light background-color: #e3f2fd;">
+        <img src="https://i.ibb.co/G7wq73p/logo2.jpg" alt="applogo" style="width: 150px;height: 60px;"></img>
+        <span class="navbar-brand" style="color: red">Restaurant Reserver</span>
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+                <a class="nav-link active" href="{{url_for('adminHome', currentId=user.LoginId)}}">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Manage</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Account: {{ user.Name }} (Manage)</a>
+            </li>
+
+            <a class="btn btn-outline-primary btn-sm" type="button" href="{{ url_for('homePage') }}">Log Out</a>
+        </ul>
+    </nav>
+
+    <center>
+        <h1>Booking details</h1>
+
+        <h6>You have a reservation for:</h6>
+        {{thisbooking.date}} at {{thisbooking.time}} <br>
+        <br>
+
+        <h6>No. of Guests:</h6>
+        {{thisbooking.adult}} Adults and {{thisbooking.children}} children <br>
+        <br>
+        
+        <h6>Special requests:</h6>
+        {{thisbooking.specialRequest}} <br>
+        <br>
+
+        <h6>Booking Status:</h6>
+        {{thisbooking.status}}
+        <br>
+        <br>
+        <h5>Customer Contact Details:</h5>
+        Name: {{thiscustomer.Name}} <br>
+        Phone: +44{{thiscustomer.Phone}} <br>
+        Email: {{thiscustomer.Email}} <br>
+    </center>
+</body>
+
+</html>
