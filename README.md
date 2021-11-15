@@ -26,7 +26,7 @@ It needs to be connected to an SQL database with atleast one one-to-many databas
 
 Before I start, I planned out my project requirements:
 
-![project requirements](<https://github.com/agray998/QA-DevOps-Fundamental-Project/blob/main/figures/app%20diagram%20(1).png>)
+![project requirements](https://github.com/myounis789/QA-DevOps-Fundamental-Project/blob/main/Documentation/projectrequirements.png)
 
 ## App Design:
 
