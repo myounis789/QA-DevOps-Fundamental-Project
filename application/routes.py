@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from application import app, db
-from application.forms import AddUser, CustomerLogin, AddBooking, UpdateBooking
+from application.forms import AddUser, CustomerLogin, AddBooking, UpdateBooking, UpdateAccount
 from application.models import Users, Bookings
 # ----------------------------------------------
 import string, random, datetime
@@ -151,6 +151,25 @@ def addBooking(currentId):
     db.session.commit()
 
     return redirect(f"/userHome/{currentId}")
+
+# User account management
+@app.route("/userHome/account/<currentId>", methods=["GET","POST"])
+def manageAccount(currentId):
+    currentUser = Users.query.filter_by(LoginId=currentId).first()
+    if request.method == 'POST':
+        form=UpdateAccount()
+        currentUser.Name = form.newName.data
+        currentUser.Email = form.newEmail.data
+        currentUser.Phone = form.newPhone.data
+        db.session.commit()
+        return redirect(f"/userHome/account/{currentId}")
+    return render_template("accountDetails.html", user=currentUser)
+
+@app.route("/userHome/updateAccount/<currentId>")
+def updateAccount(currentId):
+    form=UpdateAccount()
+    currentUser = Users.query.filter_by(LoginId=currentId).first()
+    return render_template("updateDetails.html", user=currentUser, form=form)
 
 # Filter/Search tool features:
 @app.route("/userHome/filterRecords/<currentId>/", methods=["POST"])
