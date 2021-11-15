@@ -291,36 +291,7 @@ def adminfilterRecords(currentId):
         return render_template("adminLanding.html", users=data, bookings=data2, user=currentUser)
     return render_template("adminLanding.html", users=data, bookings=data2, user=currentUser)
     
-@app.route("/adminHome/adminfilterAll/<currentId>/", methods=["POST"])
-def adminfilterAll(currentId):
-    result = str(request.form['filtertype'])
-    
-    if result == 'all':
-        data=Users.query.filter_by(LoginId=currentId).first()
-        data2=Bookings.query.filter_by( uid=data.UserId).all()
-        return redirect(f"/userHome/managebookings/{currentId}")
-
-    elif result == 'status-up':
-        data=Users.query.filter_by(LoginId=currentId).first()
-        data2=Bookings.query.filter_by( uid=data.UserId, status='Upcoming' ).all()
-        return render_template("manageBookings.html", user=data, bookings=data2)
-
-    elif result == 'status-ex':
-        data=Users.query.filter_by(LoginId=currentId).first()
-        data2=Bookings.query.filter_by( uid=data.UserId, status='Expired' ).all()
-        return render_template("manageBookings.html", user=data, bookings=data2)
-    else:
-        data=Users.query.filter_by(LoginId=currentId).first()
-        data2=Bookings.query.filter_by( uid=data.UserId).order_by(result).all()
-        return render_template("manageBookings.html", user=data, bookings=data2)
-
-@app.route("/userHome/adminSearch/<currentId>", methods=["POST"])
-def adminSearch(currentId):
-    currentUser = Users.query.filter_by(LoginId=currentId).first()
-    data=Users.query.filter_by(LoginId=currentId).first()
-    data2=Bookings.query.filter_by( uid=data.UserId, ).all()
-    search_type = request.form["searchby"]
-    search_Data = request.form["dataSearch"]
-    data2 = eval(f"Bookings.query.filter_by(uid= {data.UserId}, {search_type} = '{search_Data}').all()")
-    print(data2)
-    return render_template("searchResults.html", searchRecords = data2, user=currentUser)
+@app.route("/adminHome/account/<currentId>/")
+def adminAccount(currentId):
+    currentUser=Users.query.filter_by(LoginId=currentId).first()
+    return render_template("adminAccount.html", user=currentUser)

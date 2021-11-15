@@ -24,10 +24,7 @@
                 <a class="nav-link active" href="{{url_for('adminHome', currentId=user.LoginId)}}">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Manage</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Account: {{ user.Name }} (Manage)</a>
+                <a class="nav-link disabled" href="{{url_for('adminAccount', currentId=user.LoginId)}}">Account: {{ user.UserType }} (Manage)</a>
             </li>
 
             <a class="btn btn-outline-primary btn-sm" type="button" href="{{ url_for('homePage') }}">Log Out</a>
