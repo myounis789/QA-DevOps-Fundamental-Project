@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Customer Login</title>
+    <link rel="stylesheet" href="/application/static/main.css" />
+</head>
+<body style="background-image: url('https://media.istockphoto.com/photos/abstract-blue-cyan-background-picture-id995719694?b=1&k=20&m=995719694&s=170667a&w=0&h=bQ4Imx3qGb0-ZCPz5JIjyOWpgYENfVzbO3wR_pnNpYw='); 
+             background-repeat: no-repeat;
+             background-position: center; 
+             background-size: cover;">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <img src="https://i.ibb.co/G7wq73p/logo2.jpg" alt="applogo" style="width: 150px;height: 60px;"></img>
+        
+        <a class="navbar-brand" href="{{ url_for('homePage') }}">
+            <h2 style="font-style:italic; color: crimson;">Restaurant Reserver</h2>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    </nav>
+    
+    <center>
+        <h2>Customer Login Page</h2>
+            <img src="https://i.ibb.co/H7RNzGj/customer-Login.png" class= "img-fluid" alt="Customer Login" size="width:500; height:500;"></img>
+            <br>
+
+        <div class='form'>
+            <br>
+            <form action="{{ url_for('login')  }}" method="POST">
+                {{form.custName.label}} {{ form.custName }}<br>
+                <br>
+                {{form.yourId.label}} {{ form.yourId }}<br>
+                <button type="submit" class="btn btn-outline-primary btn-lg">
+                    {{form.submit}}
+                </button>
+                
+            </form>
+    </center>
+</body>
+</html>

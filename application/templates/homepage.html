@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+        integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <title>Welcome</title>
+</head>
+
+<body style="background-image: url('https://i.ibb.co/bWyJbXf/bg-1.jpg'); 
+             background-repeat: no-repeat;
+             background-position: center; 
+             background-size: cover;">
+
+    <nav class="navbar navbar-expand-lg navbar-light background-color: #e3f2fd;">
+        <img src="https://i.ibb.co/G7wq73p/logo2.jpg" alt="applogo" style="width: 150px;height: 60px;"></img>
+        <span class="navbar-brand" style="color: red">Restaurant Reserver</span>
+    </nav>
+    <div class="b-example-divider" style="color: black;"></div>
+    <center>
+        <h1 style=color:red>Welcome to Restaurant Reserver!</h1>
+        <br>
+        <br>
+        <br>
+        <button type="button" class="btn btn-outline-primary btn-lg">
+            <a href=" {{ url_for('customerLogin') }}">Customer Login</a>
+        </button>
+        <br>
+        <br>
+        <button type="button" class="btn btn-outline-primary btn-lg">
+            <a href="">Admin Login</a>
+        </button>
+        <br>
+        <br>
+        <br>
+        Don't have an account?
+        <br>
+        <button type="button" class="btn btn-outline-secondary btn-lg">
+            <a style="color:black;" href="{{ url_for('register') }}">Register Here!</a>
+        </button>
+        <br>
+        <br>
+    </center>
+</body>
+
+</html>
