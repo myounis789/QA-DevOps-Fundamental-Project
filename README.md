@@ -29,32 +29,58 @@ Before I start, I planned out my project requirements:
 ![project requirements](https://github.com/myounis789/QA-DevOps-Fundamental-Project/blob/main/Documentation/projectrequirements.png)
 
 ## App Design:
-These are the software flowcharts for my app design:
+Software flowcharts were designed to establish functionality for each usertype:
 
-This is how the customer login and features would work including CRUD:
+Customer Login Software Flowchart (including CRUD functionality):
+
+
 ![Flowchart](https://github.com/myounis789/QA-DevOps-Fundamental-Project/blob/main/Documentation/Customer%20software%20flowchart.png)  
 
-This is how the dminlogin and features would work including CRUD:
+Admin Login Software Flowchart (including CRUD functionality):
+
+
 ![AdminFlowchart](https://github.com/myounis789/QA-DevOps-Fundamental-Project/blob/main/Documentation/Admin%20software%20flowchart.png)  
 
 The following ERD was produced:
+
 
 ![Current ERD](https://github.com/myounis789/QA-DevOps-Fundamental-Project/blob/main/Documentation/ERD%20Diagram.png.png)
 
 
 ## Risk Assessment:
-Thefollowing risks were identified:
-
+The following risks were identified:
+- Security breach as user accounts can be accessed if loginId leaked. Will use a random unique login Id generator to increase complexity of ID.
+- user info is not hashed so developers can view all their personal records
 
 # The App:
-Here are some screenshots of my application:
+Here are some screenshots of my application running on the server:
+
+homepage/welcome page
 
 
+![home](https://github.com/myounis789/QA-DevOps-Fundamental-Project/blob/main/Documentation/welcome.png)  
+
+customer landing page
+
+![customerHome](https://github.com/myounis789/QA-DevOps-Fundamental-Project/blob/main/Documentation/customerHome.png) 
+
+admin landing page
+
+![adminHome](https://github.com/myounis789/QA-DevOps-Fundamental-Project/blob/main/Documentation/adminHome.png) 
+
+managebookings
+
+![manageBookings](https://github.com/myounis789/QA-DevOps-Fundamental-Project/blob/main/Documentation/bookinghistory.png) 
+
+account details
+
+
+![accontDetails](https://github.com/myounis789/QA-DevOps-Fundamental-Project/blob/main/Documentation/accountDetails.png) 
 ## Known Issues:
 
-- There is nothing to stop two options for the same question being assigned the same letter
-- Submitted answers are not cleared post-quiz unless the user clicks the 'return to home' link.
-
+- Can't implement filter by name on admin homepage which would've been very useful
+- Sometimes booking status doesn't update unless page is refreshed.
+- 
 ## Future Work:
 
-In future sprints, in addition to fixing the issues identified above, I would like to add a statistics page which provides a break-down of results over time by quiz. If the appropriate security measures were adhered to, future sprints could also reconsider adding user profiles which would allow users to view and write quizzes specific to them.
+As a future development, I would add a logn feature with an encrypted password feature to be stored via hashing. This maks each LoginId customised to their own password and user doesn't need to remember a random id.
