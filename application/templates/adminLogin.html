@@ -26,16 +26,16 @@
     </nav>
     
     <center>
-        <h2>Customer Login Page</h2>
-            <img src="https://i.ibb.co/H7RNzGj/customer-Login.png" class= "img-fluid" alt="Customer Login" width="228" height="228""></img>
+        <h2>Admin Login Page</h2>
+            <img src="https://i.ibb.co/ScNg8WL/admin-Login.png" class= "img-fluid" alt="Admin Login" width="228" height="228"></img>
             <br>
 
         <div class='form'>
             <br>
-            <form action="{{ url_for('login')  }}" method="POST">
-                {{form.custName.label}} {{ form.custName }}<br>
+            <form action="{{ url_for('admLogin')  }}" method="POST">
+                {{form.adminName.label}} {{ form.adminName }}<br>
                 <br>
-                {{form.yourId.label}} {{ form.yourId }}<br>
+                {{form.adminId.label}} {{ form.adminId }}<br>
                 <button type="submit" class="btn btn-outline-primary btn-lg">
                     {{form.submit}}
                 </button>
