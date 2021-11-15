@@ -205,3 +205,14 @@ def filterAll(currentId):
         data=Users.query.filter_by(LoginId=currentId).first()
         data2=Bookings.query.filter_by( uid=data.UserId).order_by(result).all()
         return render_template("manageBookings.html", user=data, bookings=data2)
+
+@app.route("/userHome/searchRecord/<currentId>", methods=["POST"])
+def searchRecord(currentId):
+    currentUser = Users.query.filter_by(LoginId=currentId).first()
+    data=Users.query.filter_by(LoginId=currentId).first()
+    data2=Bookings.query.filter_by( uid=data.UserId, ).all()
+    search_type = request.form["searchby"]
+    search_Data = request.form["dataSearch"]
+    data2 = eval(f"Bookings.query.filter_by(uid= {data.UserId}, {search_type} = '{search_Data}').all()")
+    print(data2)
+    return render_template("searchResults.html", searchRecords = data2, user=currentUser)
